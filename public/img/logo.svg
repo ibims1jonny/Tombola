@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+  <!-- Mountain silhouette -->
+  <path d="M20,80 L60,30 L100,60 L140,20 L180,50 L220,30 L260,70 L280,60 L280,80 Z" fill="#0077b6" />
+  
+  <!-- Sun -->
+  <circle cx="220" cy="25" r="15" fill="#f94144" />
+  
+  <!-- Text -->
+  <text x="50" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1d3557">Alpenverein</text>
+  <text x="120" y="75" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1d3557">Melk</text>
+</svg>

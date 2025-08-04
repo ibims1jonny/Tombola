@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Alpenverein Melk</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/img/logo.svg" alt="Alpenverein Melk Logo" class="logo">
+            <h1>Digitale Tombola</h1>
+            <h2>Alpenverein Melk</h2>
+        </header>
+
+        <main>
+            <section class="form-section login-section">
+                <h3>Admin Login</h3>
+                
+                <form id="loginForm" action="/login" method="post">
+                    <div class="form-group">
+                        <label for="username">Benutzername</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Passwort</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Anmelden</button>
+                    </div>
+                </form>
+                
+                <div id="loginMessage" class="message hidden"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; <span id="currentYear"></span> Alpenverein Melk | <a href="https://www.alpenverein.at/melk/" target="_blank">www.alpenverein.at/melk</a></p>
+        </footer>
+    </div>
+
+    <script src="/js/login.js"></script>
+</body>
+</html>

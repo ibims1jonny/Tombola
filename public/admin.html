@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Alpenverein Melk</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container admin-container">
+        <header>
+            <img src="/img/logo.svg" alt="Alpenverein Melk Logo" class="logo">
+            <h1>Digitale Tombola</h1>
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li><a href="#" id="nav-participants" class="active">Teilnehmer</a></li>
+                    <li><a href="#" id="nav-draw">Ziehung</a></li>
+                    <li><a href="#" id="nav-logs">Logs</a></li>
+                    <li><a href="#" id="nav-settings">Einstellungen</a></li>
+                    <li><a href="/logout" id="nav-logout">Abmelden</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Participants Section -->
+            <section id="participants-section" class="admin-section">
+                <div class="section-header">
+                    <h3>Teilnehmerübersicht</h3>
+                    <div class="controls">
+                        <div class="search-box">
+                            <input type="text" id="participant-search" placeholder="Suchen...">
+                            <button id="search-btn">Suchen</button>
+                        </div>
+                        <div class="filter-box">
+                            <select id="participant-filter">
+                                <option value="all">Alle</option>
+                                <option value="real">Echte Teilnehmer</option>
+                                <option value="test">Testdaten</option>
+                            </select>
+                        </div>
+                        <button id="export-csv" class="btn">CSV Export</button>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table id="participants-table">
+                        <thead>
+                            <tr>
+                                <th data-sort="firstname">Vorname <span class="sort-icon">↕</span></th>
+                                <th data-sort="lastname">Nachname <span class="sort-icon">↕</span></th>
+                                <th data-sort="email">E-Mail <span class="sort-icon">↕</span></th>
+                                <th data-sort="created_at">Datum <span class="sort-icon">↕</span></th>
+                                <th>Testdaten</th>
+                            </tr>
+                        </thead>
+                        <tbody id="participants-body">
+                            <!-- Participants will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="participants-message" class="message hidden"></div>
+            </section>
+
+            <!-- Draw Section -->
+            <section id="draw-section" class="admin-section hidden">
+                <div class="section-header">
+                    <h3>Ziehung durchführen</h3>
+                </div>
+                
+                <div class="draw-container">
+                    <p class="draw-info">Hier können Sie die Gewinner der Tombola ziehen. Es werden 3 Gewinner aus allen Teilnehmern gezogen.</p>
+                    <p id="test-mode-indicator" class="test-mode-indicator">Testmodus: <span>Inaktiv</span></p>
+                    
+                    <button id="draw-btn" class="btn btn-primary">Ziehung starten</button>
+                    
+                    <div id="winners-container" class="winners-container hidden">
+                        <h4>Gewinner</h4>
+                        <div id="winners-list" class="winners-list">
+                            <!-- Winners will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="draw-message" class="message hidden"></div>
+            </section>
+
+            <!-- Logs Section -->
+            <section id="logs-section" class="admin-section hidden">
+                <div class="section-header">
+                    <h3>Ziehungs-Logs</h3>
+                </div>
+                
+                <div class="logs-container">
+                    <div id="logs-list" class="logs-list">
+                        <!-- Logs will be displayed here -->
+                    </div>
+                </div>
+                
+                <div id="logs-message" class="message hidden"></div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="admin-section hidden">
+                <div class="section-header">
+                    <h3>Einstellungen</h3>
+                </div>
+                
+                <div class="settings-container">
+                    <div class="setting-item">
+                        <h4>Testmodus</h4>
+                        <p>Im Testmodus werden alle neuen Teilnehmer als Testdaten markiert und bei der Ziehung werden nur Testdaten berücksichtigt.</p>
+                        <div class="toggle-container">
+                            <label class="toggle">
+                                <input type="checkbox" id="test-mode-toggle">
+                                <span class="slider"></span>
+                            </label>
+                            <span id="test-mode-status">Inaktiv</span>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <h4>Testdaten zurücksetzen</h4>
+                        <p>Löscht alle als Testdaten markierten Teilnehmer und Ziehungs-Logs.</p>
+                        <button id="reset-test-data-btn" class="btn btn-danger">Testdaten zurücksetzen</button>
+                    </div>
+                </div>
+                
+                <div id="settings-message" class="message hidden"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; <span id="currentYear"></span> Alpenverein Melk | <a href="https://www.alpenverein.at/melk/" target="_blank">www.alpenverein.at/melk</a></p>
+        </footer>
+    </div>
+
+    <!-- CSV Export Modal -->
+    <div id="csv-export-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>CSV Export Optionen</h3>
+            <p>Wählen Sie die Felder aus, die exportiert werden sollen:</p>
+            <div class="export-options">
+                <div class="export-option">
+                    <input type="checkbox" id="export-name" checked>
+                    <label for="export-name">Name (Vor- und Nachname kombiniert)</label>
+                </div>
+                <div class="export-option">
+                    <input type="checkbox" id="export-email" checked>
+                    <label for="export-email">E-Mail</label>
+                </div>
+                <div class="export-option">
+                    <input type="checkbox" id="export-date">
+                    <label for="export-date">Datum</label>
+                </div>
+                <div class="export-option">
+                    <input type="checkbox" id="export-test">
+                    <label for="export-test">Testdaten-Status</label>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button id="cancel-export" class="btn">Abbrechen</button>
+                <button id="confirm-export" class="btn btn-primary">Exportieren</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tombola - Alpenverein Melk</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/img/logo.svg" alt="Alpenverein Melk Logo" class="logo">
+            <h1>Digitale Tombola</h1>
+            <h2>Alpenverein Melk</h2>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <h3>Teilnahmeformular</h3>
+                <p>Tragen Sie sich ein, um an unserer Tombola teilzunehmen und Informationen zu unseren Tourenausschreibungen zu erhalten.</p>
+                
+                <form id="participantForm">
+                    <div class="form-group">
+                        <label for="firstname">Vorname *</label>
+                        <input type="text" id="firstname" name="firstname" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastname">Nachname *</label>
+                        <input type="text" id="lastname" name="lastname" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-Mail *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">Ich stimme zu, dass meine Daten für die Tombola und für Informationen zu Tourenausschreibungen verwendet werden dürfen. *</label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Teilnehmen</button>
+                    </div>
+                </form>
+                
+                <div id="formMessage" class="message hidden"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; <span id="currentYear"></span> Alpenverein Melk | <a href="https://www.alpenverein.at/melk/" target="_blank">www.alpenverein.at/melk</a></p>
+        </footer>
+    </div>
+
+    <script src="/js/form.js"></script>
+</body>
+</html>
