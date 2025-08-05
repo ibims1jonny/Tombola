@@ -1,6 +1,5 @@
+USE tombola_db;
 -- Create database
-CREATE DATABASE IF NOT EXISTS tombola;
-USE tombola;
 
 -- Participants table
 CREATE TABLE IF NOT EXISTS participants (
